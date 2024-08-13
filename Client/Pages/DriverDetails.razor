@@ -1,0 +1,63 @@
+﻿@page "/driverdetails"
+@page "/driverdetails/{id}"
+
+
+@if(string.IsNullOrEmpty(Id))
+{
+    <PageTitle>Add New Driver</PageTitle>
+    <h1>Add Driver</h1>
+}
+else 
+{
+    <PageTitle>Edit Driver</PageTitle>
+    <h1>Edit Driver</h1>
+}
+
+
+<div class="row">
+    <EditForm Model="driver" OnValidSubmit="HandleValidRequest" OnInvalidSubmit="HandleFailedRequest">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <ValidationSummary></ValidationSummary>
+
+
+        <div class="form-group">
+            <label class="form-label">Name</label>
+            <InputText @bind-Value="driver.Name" class="form-control" />
+            <div>
+                <ValidationMessage For="() => driver.Name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Racing Number</label>
+            <InputText @bind-Value="driver.RacingNb" class="form-control" />
+            <div>
+                <ValidationMessage For="() => driver.RacingNb" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Team</label>
+            <InputText @bind-Value="driver.Team" class="form-control" />
+            <div>
+                <ValidationMessage For="() => driver.Team" />
+            </div>
+        </div>
+
+        <br />
+
+        <a @onclick="GoToDrivers" class="btn btn-primary me-2">Back</a>
+
+        <button class="btn btn-primary" type="submit">Add</button>
+
+
+        @if(!string.IsNullOrEmpty(Id))
+        {
+            <a @onclick="DeleteDriver" class="btn btn-danger">Delete Driver</a>
+        }
+
+        <p class="text-danger">@Message</p>
+
+    </EditForm>
+</div>
+
+

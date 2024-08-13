@@ -1,0 +1,37 @@
+﻿@page "/drivers"
+
+<h3>Drivers</h3>
+
+<a href="@($"driverdetails")" class="btn btn-success">Add New Driver</a>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Racing Number</th>
+            <th>Team</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var driver in _drivers)
+        {
+            <tr>
+                <td>@driver.Id</td>
+                <td>@driver.Name</td>
+                <td>@driver.RacingNb</td>
+                <td>@driver.Team</td>
+                <td>
+                    <a href="@($"driverdetails/{driver.Id}")" class="btn btn-warning">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+}
